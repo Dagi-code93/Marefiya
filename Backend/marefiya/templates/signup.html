@@ -1,0 +1,171 @@
+
+{% extends '_includes/layout.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/css/signup.css">    
+    <title>Marefiya - Signup</title>
+{% endblock head %}
+
+{% block content %}
+    
+    {% include '_includes/nav.html'%}
+    
+    <section class="forms-container">
+        <div class="button-container">
+            <div class="user-signup">
+                User Signup
+            </div>
+            <div class="admin-signup">
+                Admin Signup
+            </div>
+        </div>
+        <div class="signup-form-1">
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                
+                <p>{{ form.full_name.label(for="user-fullname") }}</p>
+                {% if form.full_name.errors %}
+                    {{ form.full_name(id="user-fullname") }}
+                    {% for error in form.full_name.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.full_name(id="user-fullname") }}
+                {% endif %}
+                
+                
+                <p>{{ form.email.label(for="user-email") }}</p>
+                {% if form.email.errors %}
+                    {{ form.email(id="user-email") }}
+                    {% for error in form.email.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.email(id="user-email") }}
+                {% endif %}
+                
+                <p>{{ form.password.label(for="user-password") }}</p>
+                {% if form.password.errors %}
+                    {{ form.password(id="user-password") }}
+                    {% for error in form.password.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.password(id="user-password") }}
+                {% endif %}
+                
+                <p>{{ form.confirm_password.label(for="user-password-conf") }}</p>
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(id="user-password-conf") }}
+                    {% for error in form.confirm_password.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.confirm_password(id="user-password-conf") }}
+                {% endif %}
+
+                <p>{{ form.submit(id="user-submit-btn") }}</p>
+            </form>
+            <div class="other-options">
+                <small>Already have an account <a href="{{ url_for('login') }}">Log in</a></small>
+            </div>
+        </div>
+        <div class="signup-form-2">
+            <form action="" method="POST">
+
+                {{ form2.hidden_tag() }}
+
+                <p>{{ form2.full_name.label(for="admin-fullname") }}</p>
+                {% if form2.full_name.errors %}
+                    {{ form2.full_name(id="admin-fullname") }}
+                    {% for error in form2.full_name.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form2.full_name(id="admin-fullname") }}
+                {% endif %}
+
+                <p>{{ form2.email.label(for="admin-email") }}</p>
+                {% if form2.email.errors %}
+                    {{ form2.email(id="admin-email") }}
+                    {% for error in form2.email.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form2.email(id="admin-email") }}
+                {% endif %}
+
+                <p>{{ form2.phone.label(for="admin-phone") }}</p>
+                {% if form2.phone.errors %}
+                    {{ form2.phone(id="admin-phone") }}
+                    {% for error in form2.phone.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form2.phone(id="admin-phone") }}
+                {% endif %}
+
+                <p>{{ form2.password.label(for="admin-password") }}</p>
+                {% if form2.password.errors %}
+                    {{ form2.password(id="admin-password") }}
+                    {% for error in form2.password.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form2.password(id="admin-password") }}
+                {% endif %}
+
+                <p>{{ form2.confirm_password.label(for="admin-password-conf") }}</p>
+                {% if form2.confirm_password.errors %}
+                    {{ form2.confirm_password(id="admin-password-conf") }}
+                    {% for error in form2.confirm_password.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form2.confirm_password(id="admin-password-conf") }}
+                {% endif %}
+
+                <p>{{ form2.submit2(id="admin-submit-btn") }}</p>
+            </form>
+            <div class="other-options">
+                <small>Already have an account   <a href="{{ url_for('login') }}">Log in</a></small>
+            </div>
+        </div>
+    </section>
+    
+    
+    <script src="../static/js/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.signup-form-2').hide();
+            $('.admin-signup').css('background', 'none');
+            $('.admin-signup').css('color', '#302E4D');
+
+            $('.admin-signup').click(function() {
+                $('.signup-form-1').hide();
+                $('.signup-form-2').show();
+                $('.user-signup').css('background', 'none');
+                $('.user-signup').css('color', '#302E4D');
+                $('.admin-signup').css('background', '#302E4D');
+                $('.admin-signup').css('color', '#E6E8E6');
+            });
+
+            $('.user-signup').click(function() {
+                $('.signup-form-2').hide();
+                $('.signup-form-1').show();
+                $('.admin-signup').css('background', 'none');
+                $('.admin-signup').css('color', '#302E4D');
+                $('.user-signup').css('background', '#302E4D');
+                $('.user-signup').css('color', '#E6E8E6');
+            });
+        });
+
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+    </script>
+
+{% endblock content %}

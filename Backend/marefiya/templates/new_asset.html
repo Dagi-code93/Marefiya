@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/new_asset.css">    
+    <title>Marefiya - Add New Asset</title>
+    <style type="text/css">
+        .alert{
+            padding: 20px 5px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .alert-success{
+            background-color: #267026; 
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    
+    {% include '_includes/nav_admin.html'%}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <section class="content-wrapper">
+        <h2 class="add-new">Add New Asset</h2>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            {{ form.hidden_tag() }}
+
+            <label for="asset-title">{{ form.title.label }}</label>
+            <p>
+                {% if form.title.errors %}
+                    {{ form.title(id="asset-title") }}
+                    {% for error in form.title.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.title(id="asset-title") }}
+                {% endif %}
+                
+            </p>
+
+            <label for="asset-title">{{ form.location_1.label }}</label>
+            <p>
+                
+                {% if form.location_1.errors %}
+                    {{ form.location_1(id="asset-lat" ,placeholder="Latitude") }}
+                    {% for error in form.location_1.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.location_1(id="asset-lat" ,placeholder="Latitude") }}
+                {% endif %}
+                
+                {% if form.location_2.errors %}
+                    {{ form.location_2(id="asset-lng" ,placeholder="Longitude") }}
+                    {% for error in form.location_2.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.location_2(id="asset-lng" ,placeholder="Longitude") }}
+                {% endif %}
+                <input type="button" id="asset-get-loc" value="Get Location" onclick="getLocation()" style="width: auto;border: 0;color: var(--platinium);padding: 0.8em 1em;border-radius: 5px;">
+            </p>
+
+            <label for="asset-title">{{ form.own_type.label }}</label>
+            <p style="margin-top: 10px;margin-bottom: 20px;">
+                {% if form.own_type.errors %}
+                    {{ form.own_type(id="ownership-type", style="padding: 0.4em 0.9em;font-size: 1em;") }}
+                    {% for error in form.own_type.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.own_type(id="ownership-type", style="padding: 0.4em 0.9em;font-size: 1em;") }}
+                {% endif %}
+                
+            </p>
+
+            <label for="asset-title">{{ form.price.label }}</label>
+            <p>
+                {% if form.price.errors %}
+                    {{ form.price(id="asset-price", style="width: 50%; margin-right: 20px;") }} 
+                    {% for error in form.price.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.price(id="asset-price", style="width: 50%; margin-right: 20px;") }} 
+                {% endif %}
+                
+                <span style="font-size: 1.7em;font-weight: bolder;margin-right: 20px;" id="stick">/</span>
+                {% if form.price_dur.errors %}
+                    {{ form.price_dur(id="price", style="padding: 0.4em 0.9em;font-size: 1em;") }}  
+                    {% for error in form.price_dur.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.price_dur(id="price", style="padding: 0.4em 0.9em;font-size: 1em;") }} 
+                {% endif %}
+                
+            </p>
+
+            <label for="asset-desc">{{ form.description.label }}</label>
+            <p>
+                {% if form.description.errors %}
+                    {{ form.description(id="asset-desc",cols="30",rows="10") }} 
+                    {% for error in form.description.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.description(id="asset-desc",cols="30",rows="10") }}
+                {% endif %}
+                
+            </p>
+
+            <label for="asset-thumbnail">{{ form.thumbnail.label }}</label>
+            <p>
+                {% if form.thumbnail.errors %}
+                    {{ form.thumbnail(id="asset-thumbnail") }}
+                    {% for error in form.thumbnail.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.thumbnail(id="asset-thumbnail") }}
+                {% endif %}   
+            </p>
+            
+            <label for="asset-image-gallery">{{ form.gallery.label }}</label>
+            <p>
+                {% if form.gallery.errors %}
+                    {{ form.gallery(id="asset-image-gallery") }}
+                    {% for error in form.gallery.errors %}
+                        <small style="color: red; font-size: 0.9em;">{{ error }}</small>
+                    {% endfor %}
+                {% else %}
+                    {{ form.gallery(id="asset-image-gallery") }}
+                {% endif %}               
+            </p>
+
+            <p>
+                {{ form.submit }}
+            </p>
+        </form>
+    </section>
+    
+    
+    <script src="../static/js/jquery.js"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+
+        document.querySelector('#ownership-type').addEventListener(
+            'change', function (){
+                var x = document.getElementById("ownership-type").value;
+                var y = document.getElementById("stick");
+                if (x == "Rent"){
+                    y.style.display = "inline";
+                    document.getElementById("price").style.display = "inline"; 
+                }
+            
+                if (x == "Sell"){
+                    y.style.display = "none";
+                    document.getElementById("price").style.display = "none"; 
+                }
+            } 
+        );
+
+
+        var lat_input = document.getElementById("asset-lat");
+        var lng_input = document.getElementById("asset-lng");
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else { 
+            lat_input.value = "Geolocation is not supported by this browser.";
+          }
+        }
+
+        function showPosition(position) {
+            if(lat_input.value == ""){
+               lat_input.value = position.coords.latitude; 
+            }
+            if(lng_input.value == ""){
+                lng_input.value = position.coords.longitude;
+            }      
+        }
+
+        // function showError(error) {
+        //   switch(error.code) {
+        //     case error.PERMISSION_DENIED:
+        //       lng_input.value = "User denied the request for Geolocation."
+        //       break;
+        //     case error.POSITION_UNAVAILABLE:
+        //       lng_input.value = "Location information is unavailable."
+        //       break;
+        //     case error.TIMEOUT:
+        //       lng_input.value = "The request to get user location timed out."
+        //       break;
+        //     case error.UNKNOWN_ERROR:
+        //       lng_input.value = "An unknown error occurred."
+        //       break;
+        //   }
+        // }
+
+        
+    </script>
+</body>
+</html>

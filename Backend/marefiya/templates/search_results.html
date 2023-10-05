@@ -1,0 +1,136 @@
+{% extends '_includes/layout.html' %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/search_results.css')}}">    
+    <title>Marefiya - Search</title>
+    <style type="text/css">
+        .alert{
+            padding: 20px 5px;
+            width: 100%;
+            position: absolute;
+            top: 81px;
+        }
+        .alert-success{
+            background-color: #267026; 
+            color: #fff;
+        }
+        .alert-info{
+            background-color: #0275d8;
+            color: #fff;
+        }
+    </style>
+{% endblock head%}
+
+{% block content %}
+<body>
+    
+    {% if current_user.phone %}
+        {% include '_includes/nav_admin.html'%}
+    {% else %}
+        {% include '_includes/nav.html'%}
+    {% endif%}
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    
+    <section class="search-area">
+        <div class="container">
+            <h4 class="title">{{ form.name.label}} </h4>
+            <form action="" method="POST" id="search-form">
+                {{ form.hidden_tag() }}
+
+                {{ form.name(class="loc-input", placeholder="Name / Location", value=q) }}
+                {{ form.submit(value="Search") }}
+            </form>
+        </div>
+    </section>
+
+    <section class="results">
+        <div class="filters">
+            <p class="refine">Refine By:</p>
+            <form action="" method="POST">
+                {{ form2.hidden_tag() }}
+                <p class="filter-title">Price:</p>
+                <div class="money-filters">
+                        <p>{{ form2.start_price.label }}</p>
+                        <p>{{ form2.start_price(class="start-price", value=start_price) }}</p>
+                        <p>{{ form2.final_price.label }}</p> 
+                        <p>{{ form2.final_price(class="final-price", value=final_price) }}</p>
+                </div>
+                <div class="rent-buy-filters">
+                    <p class="filter-title">{{ form2.own_type.label }}: </p>
+                    {{ form2.own_type(class="rent-opt", id="MySelect") }}
+                </div>
+                {{ form2.submit(value="Filter",style="width: auto;background-color: #E5242a;margin-bottom: 30px;color: #E6E8E6;border: 0;padding: 0.5em 0.8em;border-radius: 5px;margin-top: 10px;") }}
+            </form>
+        </div>
+        
+        <div class="result-listing">
+            {% if assets %}
+                {% for asset in assets %}
+                    <div class="product">
+                        <img src="{{ asset.thumbnail }}" alt="Image">
+                        <div class="product-details">
+                            <a href="{{ url_for('detail', id=asset.id)}}" class="product-title"><h2>{{ asset.title }}</h2></a>
+                            <p class="product-short-description">
+                                {{ asset.description }}
+                            </p>
+                            <p class="product-price">
+                                {% if asset.rent_or_buy == "Rent" %}
+                                    {{ asset.price }}/{{ asset.price_rate }}
+                                {% else %}
+                                    {{ asset.price }}(Sell)
+                                {% endif %}
+                            </p>
+                            <a href="#" class="contact">Contact</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                 <div style="border: 0;">
+                    <div class="product-details">
+                        <p style="padding: 100px 0;text-align: center;font-size: 30px;">
+                            Sorry, There are no results!
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    
+    
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+
+        function setSelectedIndex(s, v) {
+            for ( var i = 0; i < s.options.length; i++ ) {
+                if ( s.options[i].text == v ) {
+                    s.options[i].selected = true;
+                    return;
+                }
+            }
+        }
+
+        setSelectedIndex(document.getElementById('MySelect'),"{{ rent }}");  
+    </script>
+
+
+{% endblock content %}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/search_results.css">    
+    <title>Marefiya - Search</title>
+</head>
+<body>
+    <div class="menu-btn">
+        <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="logo">
+                    <img src="../img/logo.png" alt="Logo">                
+                </div>
+                <div class="center-menu">
+                    <ul class="center-menu-ul">
+                        <li><a href="#" class="active">Rent</a></li>
+                        <li><a href="#">Sell</a></li>
+                        <li><a href="#" class="fix-1">Top Rated</a></li>
+                    </ul>
+                </div>
+                <div class="right-menu">
+                    <ul class="right-menu-ul">
+                        <li><a href="#">Signup</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="search-area">
+        <div class="container">
+            <h4 class="title">Search: </h4>
+            <form action="" id="search-form">
+                <input type="text" class="loc-input" placeholder="Name / Location">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </section>
+
+    <section class="results">
+        <div class="filters">
+            <p class="refine">Refine By:</p>
+            <p class="filter-title">Price:</p>
+            <div class="money-filters">
+                <form action="" id="money-form">
+                    <p>Start: </p>
+                    <p><input type="text" class="start-price"></p>
+                    <p>Final:</p> 
+                    <p><input type="text" class="final-price"></p>
+                </form>
+            </div>
+            <div class="rent-buy-filters">
+                <p class="filter-title">Ownership Type: </p>
+                <form action="" id="money-form">
+                    <select class="rent-opt">
+                        <option value="rent">Rent</option>
+                        <option value="buy">Buy</option>
+                    </select>
+                </form>
+            </div>
+            <div class="rooms">
+                <form action="" id="rooms-form">
+                    <p class="filter-title">Rooms: </p>
+                    <p><input type="text" class="rooms"></p>
+                </form>
+            </div>
+        </div>
+        <div class="result-listing">
+            <div class="product">
+                <img src="../img/marefiyas/1.jpg" alt="">
+                <div class="product-details">
+                    <a href="#" class="product-title"><h2>Hilton International Hotel</h2></a>
+                    <p class="product-short-description">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                    </p>
+                    <p class="product-price">$30/Night</p>
+                    <a href="#" class="contact">Contact</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="../img/marefiyas/2.jpg" alt="">
+                <div class="product-details">
+                    <a href="#" class="product-title"><h2>Marriot International Hotel</h2></a>
+                    <p class="product-short-description">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                    </p>
+                    <p class="product-price">$20/Night</p>
+                    <a href="#" class="contact">Contact</a>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="../img/marefiyas/3.jpg" alt="">
+                <div class="product-details">
+                    <a href="#" class="product-title"><h2>Intercontinental International Hotel</h2></a>
+                    <p class="product-short-description">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                    </p>
+                    <p class="product-price">$35/Night</p>
+                    <a href="#" class="contact">Contact</a>
+                </div>
+            </div>
+
+
+            <div class="product">
+                <img src="../img/marefiyas/4.jpg" alt="">
+                <div class="product-details">
+                    <a href="#" class="product-title"><h2>Aregash Motel</h2></a>
+                    <p class="product-short-description">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nam cumque vitae, sapiente deleniti quidem?
+                    </p>
+                    <p class="product-price">$5/Night</p>
+                    <a href="#" class="contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    
+    <script src="js/jquery.js"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends '_includes/layout.html' %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/admin_panel.css">
+    <title>Marefiya - Admin Panel</title>
+    <style type="text/css">
+        .alert{
+            padding: 20px 5px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .alert-success{
+            background-color: #267026; 
+            color: #fff;
+        }
+        .action-box a#add{
+            text-decoration: none;
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px 8px;
+            border-radius: 7px;
+            border: 0;
+            margin-left: 5px;
+        }
+    </style>
+
+{% endblock head%}
+
+{% block content %}
+    
+    {% include '_includes/nav_admin.html'%}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <section class="content-wrapper">
+        <div class="action-box">
+            <p>Want to add a new asset : </p>
+            <a href="{{url_for('new_asset')}}" id="add">Add Property</a>
+        </div>
+        <div class="assets-box">
+            <h2 class="your-assets">Your Assets:</h2>
+            {% if assets %}
+                {% for asset in assets %}
+                    <div class="product">
+                        <img src="{{ asset.thumbnail }}" alt="">
+                        <div class="product-details">
+                            <a href="{{ url_for('detail', id=asset.id) }}" class="product-title"><h2>{{ asset.title }}</h2></a>
+                            <p class="product-short-description">
+                                {{ asset.description }}
+                            </p>
+                            <p class="product-price">
+                                {% if asset.rent_or_buy == "Rent" %}
+                                    {{ asset.price }}/{{ asset.price_rate }}
+                                {% else %}
+                                    {{ asset.price }}(Sell)
+                                {% endif %}
+                            </p>
+                            <a href="#" class="contact">Contact</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                 <div style="border: 0;">
+                    <div class="product-details">
+                        <p style="padding: 100px 0;text-align: center;font-size: 30px;">
+                            You Have no assets yet!
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    
+    
+    <script src="../static/js/jquery.js"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+    </script>
+{% endblock content %}

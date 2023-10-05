@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200i,400&display=swap');
+
+/* CSS VARIABLES */
+:root{
+    --space-cadet: #302E4D;
+    --permanent-grenium: #E5242a;
+    --platinium: #E6E8E6;
+    --dark-purple: #3D0B37;
+    --tyrian-purple: #610528;
+}
+
+/* CSS RESET */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+/* GLOBAL CLASSES */
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Hero and search section */
+
+.hero{
+    height: calc(100vh - 80px);
+    background: url('../img/hero.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hero-container{
+    display: grid;
+    justify-items: center;
+}
+
+.hero-container .moto{
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.hero-container form{
+    padding: 15px 25px;
+    background-color: var(--space-cadet);
+    margin-bottom: 70px;
+    border-radius: 25px;
+}
+
+.hero-container .moto h1{
+    color: var(--space-cadet);
+    font-size: 3em;
+}
+
+.hero-container form input, .hero-container form select{
+    padding: 1em 1.5em;
+}
+
+.hero-container form input::placeholder{
+    color: var(--dark-purple);
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.hero-container form option{
+    color: var(--dark-purple);
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.hero-container form input:focus, .hero-container form select:focus{
+    border: 2px solid var(--permanent-grenium);
+    outline: none;
+}
+
+.hero-container form input[type="submit"]{
+    border-radius: 10px;
+    background-color: var(--permanent-grenium);
+    color: var(--platinium);
+    font-size: 0.9em;
+    border: 0;
+    outline: none;
+    box-shadow: 0;
+}
+
+/* Hero details */
+.detailed-cta{
+    margin-top: 40px;
+    background-color: var(--platinium);
+    opacity: 0.6;
+    padding: 20px 10px;
+}
+
+.detailed-cta h2{
+    margin-bottom: 20px;
+    font-size: 1.7em;
+    justify-self: center;
+}
+.detailed-cta a{
+    text-decoration: none;
+    background-color: var(--space-cadet);
+    padding: 10px 8px;
+    border-radius: 7px;
+    color: var(--platinium);
+    margin-top: 20px;
+    opacity: 1.0;
+}
+
+/* Media Queries */
+@media(max-width: 850px){
+    .moto{
+        font-size: 1em;
+    }
+
+    #search-form .start-price, #search-form .final-price, #search-form .rent_or_buy{
+        display: none;
+    }
+
+    .hero-container form{
+        width: 100%;
+    }
+
+    .hero-container form .loc-input{
+        width: 80%;
+    }
+
+    .hero-container form input[type="submit"]{
+        margin-right: 0px;
+    }
+
+    .detailed-cta{
+        font-size: 0.8em;
+        margin-top: 20px;
+    }
+}
+
+@media(max-width: 620px){
+    .moto{
+        font-size: 0.8em;
+    }
+
+    .hero-container form .loc-input{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .hero-container form input[type="submit"]{
+        display: block;
+        width: 100%;
+    }
+
+    .detailed-cta{
+        font-size: 0.7em;
+        margin-top: 20px;
+    }
+
+    .fix-1{
+        font-size: 0.9em;
+    }
+}

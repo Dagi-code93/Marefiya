@@ -1,0 +1,75 @@
+
+{% extends '_includes/layout.html' %}
+
+{% block head %}
+     <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}"> 
+    <title>Marefiya - Home</title>
+    <style type="text/css">
+        .alert{
+            padding: 20px 5px;
+            width: 100%;
+            position: absolute;
+            top: 81px;
+        }
+        .alert-success{
+            background-color: #267026; 
+            color: #fff;
+        }
+        .alert-info{
+            background-color: #0275d8;
+            color: #fff;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+
+    {% include '_includes/nav.html'%}
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <section class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="moto">
+                    <h1>Find a place to fit your needs!</h1>
+                </div>
+                <form method="POST" id="search-form">
+                    {{ form.name(class="loc-input", placeholder="Name / Location") }}
+                    {{ form.start_price(class="start-price", placeholder="Start Price") }}
+                    {{ form.final_price(class="final-price", placeholder="Final Price") }}
+                    {{ form.rent_or_buy(class="rent_or_buy") }}
+                    
+                    {{ form.submit }}
+                </form>
+                <div class="detailed-cta">
+                    <h2>
+                        Helping you find a place that fits your needs both finacially and 
+                        location wise.
+                    </h2>
+                    <a href="#">Start Exploring</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+    </script>
+
+{% endblock content %}    

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/new_asset.css">    
+    <title>Marefiya - Add New Asset</title>
+</head>
+<body>
+    <div class="menu-btn">
+        <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="logo">
+                    <img src="../img/logo.png" alt="Logo">                
+                </div>
+                <div class="center-menu">
+                    <ul class="center-menu-ul">
+                        <li><a href="#" class="active">Rent</a></li>
+                        <li><a href="#">Sell</a></li>
+                        <li><a href="#">Top Rated</a></li>
+                    </ul>
+                </div>
+                <div class="right-menu">
+                    <ul class="right-menu-ul">
+                        <li>
+                            <img src="../img/admin.jpg" alt="admin-img">
+                            <a href="#" id="profile-name">Gebrekirtos Desta</a>
+                        </li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="content-wrapper">
+        <h2 class="add-new">Add New Asset</h2>
+
+        <form action="">
+            <label for="asset-title">Asset Title:</label>
+            <p>
+                <input type="text" id="asset-title">
+            </p>
+
+            <label for="asset-title">Asset Location:</label>
+            <p>
+                <input type="text" id="asset-lat" placeholder="Latitude">
+                <input type="text" id="asset-lng" placeholder="Longtude">
+                <input type="submit" id="asset-get-loc" value="Get Location">
+            </p>
+
+            <label for="asset-title">Asset Ownership Type:</label>
+            <p style="margin-top: 10px;margin-bottom: 20px;">
+                <select name="" id="ownership-type" style="padding: 0.4em 0.9em;font-size: 1em;">
+                    <option value="rent">Rent</option>
+                    <option value="sell">Sell</option>
+                </select>
+            </p>
+
+            <label for="asset-title">Asset Price:</label>
+            <p>
+                <input type="text" id="asset-price" style="width: 50%; margin-right: 20px;"> 
+                <span style="font-size: 1.7em;font-weight: bolder;margin-right: 20px;">/</span> 
+                <select name="" id="price" style="padding: 0.4em 0.9em;font-size: 1em;">
+                    <option value="night">Night</option>
+                    <option value="day">Day</option>
+                    <option value="month">Month</option>
+                </select>
+            </p>
+
+            <label for="asset-desc">Asset Description:</label>
+            <p>
+                <textarea id="asset-desc" id="" cols="30" rows="10">
+
+                </textarea>
+            </p>
+            <label for="asset-thumbnail">Asset Thumbnail:</label>
+            <p>
+                <input type="file" id="asset-thumbnail">
+            </p>
+            <label for="asset-title">Asset Image Gallery:</label>
+            <p>
+                <input type="file" id="asset-image-gallery">
+            </p>
+
+            <p>
+                <input type="submit" value="Add Asset">
+            </p>
+        </form>
+    </section>
+    
+    
+    <script src="../js/jquery.js"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );   
+    </script>
+</body>
+</html>

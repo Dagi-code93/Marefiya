@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/home-style.css">    
+    <title>Marefiya - Home</title>
+</head>
+<body>
+    <div class="menu-btn">
+        <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Logo">                
+                </div>
+                <div class="center-menu">
+                    <ul class="center-menu-ul">
+                        <li><a href="#" class="active">Rent</a></li>
+                        <li><a href="#">Sell</a></li>
+                        <li><a href="#" class="fix-1">Top Rated</a></li>
+                    </ul>
+                </div>
+                <div class="right-menu">
+                    <ul class="right-menu-ul">
+                        <li><a href="#">Signup</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="moto">
+                    <h1>Find a place to fit your needs!</h1>
+                </div>
+                <form action="" id="search-form">
+                    <input type="text" class="loc-input" placeholder="Name / Location">
+                    <input type="text" class="start-price" placeholder="Start Price">
+                    <input type="text" class="final-price" placeholder="Final Price">
+                    <select class="rent_or_buy">
+                        <option value="detail" selected disabled>Rent/Buy</option>
+                        <option value="rent">Rent</option>
+                        <option value="buy">Buy</option>
+                    </select>
+                    <input type="submit" value="Search">
+                </form>
+                <div class="detailed-cta">
+                    <h2>
+                        Helping you find a place that fits your needs both finacially and 
+                        location wise.
+                    </h2>
+                    <a href="#">Start Exploring</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script src="js/jquery.js"></script>
+    <script>
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+    </script>
+</body>
+</html>

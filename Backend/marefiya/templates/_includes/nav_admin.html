@@ -1,0 +1,41 @@
+<div class="menu-btn">
+        <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="logo">
+                    <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo">                
+                </div>
+                <div class="center-menu">
+                    <ul class="center-menu-ul">
+                        <li><a href="#" class="active">Rent</a></li>
+                        <li><a href="#">Sell</a></li>
+                        <li><a href="#" class="fix-1">Top Rated</a></li>
+                    </ul>
+                </div>
+                {% if current_user.is_authenticated %}
+                    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav_logged_in.css')}}">  
+                    <div class="right-menu">   
+                        <ul class="right-menu-ul">
+                            <li style="padding: 0;background-color: #3D0B37;" id="fix-2">
+                                <img src="{{ url_for('static', filename='img/profile_pic/admin.jpg') }}" alt="admin-img">
+                                <a href="{{url_for('admin_account')}}" id="profile-name" style="background-color: #3D0B37;color: #E6E8E6;">{{ current_user.full_name }}</a>
+                            </li>
+                            <li><a href="{{url_for('logout_owners')}}">Logout</a></li>
+                         </ul>
+
+                    </div>
+                {% else %}
+                    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/nav.css')}}">
+                    <div class="right-menu"> 
+                        <ul class="right-menu-ul"> 
+                            <li><a href="{{url_for('signup')}}" id="signup">Signup</a></li>
+                            <li><a href="{{url_for('login')}}" id="login">Login</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+                </div>
+            </nav>
+        </div>
+    </header>

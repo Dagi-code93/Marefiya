@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/signup.css">    
+    <title>Marefiya - Signup</title>
+</head>
+<body>
+    <div class="menu-btn">
+        <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <header class="header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="logo">
+                    <img src="../img/logo.png" alt="Logo">                
+                </div>
+                <div class="center-menu">
+                    <ul class="center-menu-ul">
+                        <li><a href="#" class="active">Rent</a></li>
+                        <li><a href="#">Sell</a></li>
+                        <li><a href="#" class="fix-1">Top Rated</a></li>
+                    </ul>
+                </div>
+                <div class="right-menu">
+                    <ul class="right-menu-ul">
+                        <li><a href="#">Signup</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="forms-container">
+        <div class="button-container">
+            <div class="user-signup">
+                User Signup
+            </div>
+            <div class="admin-signup">
+                Admin Signup
+            </div>
+        </div>
+        <div class="signup-form-1">
+            <form action="">
+                <p><label for="user-fullname">Full Name:</label></p>
+                <input type="text" id="user-fullname">
+                <p><label for="user-email">Email:</label></p>
+                <input type="email" id="user-email">
+                <p><label for="user-password">Password:</label></p>
+                <input type="password" id="user-password">
+                <p><label for="user-password-conf">Confirm Password:</label></p>
+                <input type="password" id="user-password-conf">
+                <p><input type="submit" id="user-submit-btn" value="Signup"></p>
+            </form>
+            <div class="other-options">
+                <small>Already have an account <a href="#">Log in</a></small>
+            </div>
+        </div>
+        <div class="signup-form-2">
+            <form action="">
+                <p><label for="admin-fullname">Full Name:</label></p>
+                <input type="text" id="admin-fullname">
+                <p><label for="admin-email">Email:</label></p>
+                <input type="email" id="admin-email">
+                <p><label for="admin-phone">Phone:</label></p>
+                <input type="text" id="admin-phone">
+                <p><label for="amin-password">Password:</label></p>
+                <input type="password" id="admin-password">
+                <p><label for="admin-password-conf">Confirm Password:</label></p>
+                <input type="password" id="admin-password-conf">
+                <p><input type="submit" id="admin-submit-btn" value="Signup"></p>
+            </form>
+            <div class="other-options">
+                <small>Already have an account   <a href="#">Log in</a></small>
+            </div>
+        </div>
+    </section>
+    
+    
+    <script src="../js/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.signup-form-2').hide();
+            $('.admin-signup').css('background', 'none');
+            $('.admin-signup').css('color', '#302E4D');
+
+            $('.admin-signup').click(function() {
+                $('.signup-form-1').hide();
+                $('.signup-form-2').show();
+                $('.user-signup').css('background', 'none');
+                $('.user-signup').css('color', '#302E4D');
+                $('.admin-signup').css('background', '#302E4D');
+                $('.admin-signup').css('color', '#E6E8E6');
+            });
+
+            $('.user-signup').click(function() {
+                $('.signup-form-2').hide();
+                $('.signup-form-1').show();
+                $('.admin-signup').css('background', 'none');
+                $('.admin-signup').css('color', '#302E4D');
+                $('.user-signup').css('background', '#302E4D');
+                $('.user-signup').css('color', '#E6E8E6');
+            });
+        });
+
+        document.querySelector('.menu-btn').addEventListener(
+            'click', function (){
+                document.querySelector('.center-menu-ul').classList.toggle('show');
+                document.querySelector('.right-menu-ul').classList.toggle('show');
+            } 
+        );
+    </script>
+</body>
+</html>
